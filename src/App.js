@@ -1,6 +1,10 @@
 import { useState ,useEffect} from 'react';
 import './App.css';
-<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+import {Routes,Route} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import {response} from "./response";
+
+
 function App() {
   const[radio,setRadio]=useState("");
   const initialValues={
@@ -23,17 +27,28 @@ function App() {
     setFormValues({...formValues,[name]:value});
     setRadio(e.target.value);
   };
-  const handleSubmit=(e)=>{
+  
+  const navigate = useNavigate();
+  const gotoResponseDone = () => {
+    navigate('/response');
+  }
+  
+  const HandleSubmit=(e)=>{
     e.preventDefault();
     setFormErrors(validate(formValues));
     setIsSubmit(true);
-  };
-  useEffect(()=>{
-    console.log(formErrors);
     if(Object.keys(formErrors).length===0 && isSubmit)
     {
+      //  fetch("mongodb+srv://janhavi:4iPZ-vwXJeYsrvM@cluster0.raaonlz.mongodb.net/yogaForm",{
+      //   method:"GET"
+      //  }).then((res)=> res.json())
       
     }
+  };
+
+  useEffect(()=>{
+    console.log(formErrors);
+    
   },[formErrors])
 
   const validate=(values)=>{
@@ -57,6 +72,9 @@ function App() {
     if(!values.number){
       errors.number="Phone number is required";
     }
+    else if(values.number.length!=10){
+      errors.number="Invalid phone number";
+    }
     if(!values.radio){
       errors.radio="Batch is required";
     }
@@ -71,7 +89,7 @@ function App() {
         <br></br>
 
       <div className="inner_view">
-        <form className="form" onSubmit={handleSubmit}>
+        <form className="form"  method="POST">
           <h3>Enter your name:</h3>
           <input 
             className="input_box" 
@@ -158,10 +176,10 @@ function App() {
 
 
           <div className="inner_view">
-          <button className="Submit">Submit
+          <button className="Submit" onClick={gotoResponseDone()}>Submit
           </button>
           </div>
-
+          
         </form>
       </div> 
       <br></br>
