@@ -1,7 +1,6 @@
 import { useState ,useEffect} from 'react';
 import './App.css';
 import {BrowserRouter as Router,Routes,Route} from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 import Response from "./Response";
 import Home from "./Home";
 
@@ -12,6 +11,7 @@ function App() {
   },[])
 
   return (
+    //for two screens:one for the form other for the payment successful screen
     <div className="App">
       <Routes>
         <Route path="/" element={<Home />} />

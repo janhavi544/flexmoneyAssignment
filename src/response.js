@@ -1,11 +1,10 @@
 import React from 'react'
-
+import './Response.css';
 function Response(){
   return (
     <div className="ResponseScreen">
-
-      <h2 className="h2">Registration Valid</h2>
-     
+      <br></br>
+      <h2 >Payment succesful!!</h2>
     </div>
   )
 }

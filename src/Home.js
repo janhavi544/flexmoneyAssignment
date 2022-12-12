@@ -1,7 +1,6 @@
 import { useState ,useEffect} from 'react';
 import {Routes,Route} from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-
 function Home() {
     const[radio,setRadio]=useState("");
     const initialValues={
@@ -15,7 +14,7 @@ function Home() {
     const [formValues,setFormValues]=useState(initialValues);
     const [formErrors,setFormErrors]=useState({});
     const [isSubmit,setIsSubmit]=useState(false);
-  
+
     const handleChange=(e)=>{
       const{name,value}=e.target;
       setFormValues({...formValues,[name]:value});
@@ -27,38 +26,36 @@ function Home() {
     };
     
     const navigate = useNavigate();
-
     async function gotoResponseDone (e) {
         e.preventDefault();
         setFormErrors(validate(formValues));
         setIsSubmit(true);
+        //navigate('/Response');
         if(Object.keys(formErrors).length===0 && isSubmit)
         {
-          //  fetch("mongodb+srv://janhavi:4iPZ-vwXJeYsrvM@cluster0.raaonlz.mongodb.net/yogaForm",{
-          //   method:"GET"
-          //  }).then((res)=> res.json())
           formValues.payment_for= new Date().getMonth();
           console.log(formValues);
 
-          await fetch("http://localhost:5000/record/add", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formValues),
-          })
-          .catch(error => {
-            window.alert(error);
-            return;
-          });
-          navigate('/Response');
+             await fetch("http://localhost:5000/record/update", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(formValues),
+            })
+            .catch(error => {
+              window.alert(error);
+              return;
+            });
         }
-        
+
     }
   
     useEffect(()=>{
       console.log(formErrors);
-      
+      if(Object.keys(formErrors).length===0 && isSubmit){
+        navigate('/Response');
+      }
     },[formErrors])
   
     const validate=(values)=>{
@@ -82,7 +79,7 @@ function Home() {
       if(!values.number){
         errors.number="Phone number is required";
       }
-      else if(values.number.length!=10){
+      else if(values.number.length!==10){
         errors.number="Invalid phone number";
       }
       if(!values.radio){
@@ -92,14 +89,13 @@ function Home() {
     };
     return (
       <div className="Home">
-        {/* <pre>{JSON.stringify(formValues,undefined,2)}</pre> */}
         <h2 className="h2">Yoga classes registration form:</h2>
         <p className="p">Kindly fill out the form for joining the Yoga classes at Asha Classes.The monthly fees for the sessions at
           Asha Classes is INR 500, payment is done on a monthly basis.</p> 
           <br></br>
   
         <div className="inner_view">
-          <form className="form"  method="POST">
+          <form className="form"  method="POST" >
             <h3>Enter your name:</h3>
             <input 
               className="input_box" 
@@ -141,6 +137,7 @@ function Home() {
   
             <h3>Enter the batch you want to be in:</h3>
             <input 
+              className='radioColor'
               type="radio" 
               id="6_7" 
               name="radio" 
@@ -151,6 +148,7 @@ function Home() {
             <label htmlFor="6_7">6 AM TO 7 AM</label>
             <br></br>
             <input 
+              className='radioColor'
               type="radio" 
               id="7_8" 
               name="radio" 
@@ -161,6 +159,7 @@ function Home() {
             <label htmlFor="7_8">7 AM TO 8 AM</label>
             <br></br>
             <input 
+              className='radioColor'
               type="radio" 
               id="8_9" 
               name="radio" 
@@ -171,6 +170,7 @@ function Home() {
             <label htmlFor="8_9">8 AM TO 9 AM</label>
             <br></br>
             <input 
+              className='radioColor'
               type="radio" 
               id="5_6" 
               name="radio" 
@@ -186,7 +186,7 @@ function Home() {
   
   
             <div className="inner_view">
-            <button className="Submit" onClick={gotoResponseDone}>Submit
+            <button className="Submit" onClick={gotoResponseDone} >Submit
             </button>
             </div>
             
