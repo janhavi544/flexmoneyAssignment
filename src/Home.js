@@ -9,7 +9,8 @@ function Home() {
       age:"",
       email:"",
       number:"",
-      radio:""
+      radio:"",
+      payment_for:""
     };
     const [formValues,setFormValues]=useState(initialValues);
     const [formErrors,setFormErrors]=useState({});
@@ -26,7 +27,7 @@ function Home() {
     };
     
     const navigate = useNavigate();
-    const gotoResponseDone = (e) => {
+    async function gotoResponseDone (e) {
         e.preventDefault();
         setFormErrors(validate(formValues));
         setIsSubmit(true);
@@ -35,7 +36,19 @@ function Home() {
           //  fetch("mongodb+srv://janhavi:4iPZ-vwXJeYsrvM@cluster0.raaonlz.mongodb.net/yogaForm",{
           //   method:"GET"
           //  }).then((res)=> res.json())
+          formValues.payment_for= new Date().getMonth();
           console.log(formValues);
+          await fetch("http://localhost:5000/record/add", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formValues),
+          })
+          .catch(error => {
+            window.alert(error);
+            return;
+          });
           navigate('/Response');
         }
         
