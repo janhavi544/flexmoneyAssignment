@@ -27,6 +27,7 @@ function Home() {
     };
     
     const navigate = useNavigate();
+
     async function gotoResponseDone (e) {
         e.preventDefault();
         setFormErrors(validate(formValues));
@@ -38,6 +39,7 @@ function Home() {
           //  }).then((res)=> res.json())
           formValues.payment_for= new Date().getMonth();
           console.log(formValues);
+
           await fetch("http://localhost:5000/record/add", {
             method: "POST",
             headers: {
