@@ -5,6 +5,7 @@ function Response(){
     <div className="ResponseScreen">
 
       <h2 className="h2">Registration Valid</h2>
+     
     </div>
   )
 }

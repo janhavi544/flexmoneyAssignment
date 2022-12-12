@@ -26,22 +26,20 @@ function Home() {
     };
     
     const navigate = useNavigate();
-    const gotoResponseDone = () => {
-        navigate('/Response');
-    }
-    
-    const HandleSubmit=(e)=>{
-      e.preventDefault();
-      setFormErrors(validate(formValues));
-      setIsSubmit(true);
-      if(Object.keys(formErrors).length===0 && isSubmit)
-      {
-        //  fetch("mongodb+srv://janhavi:4iPZ-vwXJeYsrvM@cluster0.raaonlz.mongodb.net/yogaForm",{
-        //   method:"GET"
-        //  }).then((res)=> res.json())
+    const gotoResponseDone = (e) => {
+        e.preventDefault();
+        setFormErrors(validate(formValues));
+        setIsSubmit(true);
+        if(Object.keys(formErrors).length===0 && isSubmit)
+        {
+          //  fetch("mongodb+srv://janhavi:4iPZ-vwXJeYsrvM@cluster0.raaonlz.mongodb.net/yogaForm",{
+          //   method:"GET"
+          //  }).then((res)=> res.json())
+          console.log(formValues);
+          navigate('/Response');
+        }
         
-      }
-    };
+    }
   
     useEffect(()=>{
       console.log(formErrors);
