@@ -42,4 +42,8 @@ The fields in the collection:
 So email is used as query to check if the databse contains this email or not , if it is present we simply update the details otherwise add a new record
 After this the website is directed to the responsescreen which indicates that the payment is successful(which is not implemented(the payment gateway) as it wasn't asked for)
 
+Attaching the screenshots for reference:
+![Screenshot (235)](https://user-images.githubusercontent.com/73301992/207171706-3deee679-f90b-44ab-ada1-31dea3e24fab.png)
+![Screenshot (236)](https://user-images.githubusercontent.com/73301992/207171730-d5996bff-5317-40e7-89b8-c3324b7d3755.png)
+![Screenshot (234)](https://user-images.githubusercontent.com/73301992/207171754-4e4b6472-f292-4400-8a06-7dcae0b6b647.png)
 
