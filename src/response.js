@@ -1,7 +1,12 @@
 import React from 'react'
 
-export const response = () => {
+function Response(){
   return (
-    <div>response fejsfur</div>
+    <div className="ResponseScreen">
+
+      <h2 className="h2">Registration Valid</h2>
+    </div>
   )
 }
+
+export default Response;
