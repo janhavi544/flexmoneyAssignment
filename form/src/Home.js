@@ -30,32 +30,32 @@ function Home() {
         e.preventDefault();
         setFormErrors(validate(formValues));
         setIsSubmit(true);
-        //navigate('/Response');
+        var done=false;
         if(Object.keys(formErrors).length===0 && isSubmit)
         {
           formValues.payment_for= new Date().getMonth();
           console.log(formValues);
 
-             await fetch("http://localhost:5000/record/update", {
+          
+          const response = await fetch("http://localhost:5000/record/update", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify(formValues),
             })
+            .then(navigate('\Response'))
             .catch(error => {
               window.alert(error);
               return;
             });
+            
+            
         }
-
     }
   
     useEffect(()=>{
       console.log(formErrors);
-      if(Object.keys(formErrors).length===0 && isSubmit){
-        navigate('/Response');
-      }
     },[formErrors])
   
     const validate=(values)=>{
