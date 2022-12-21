@@ -51,3 +51,5 @@ Attaching the screenshots for reference:
 ![Screenshot (234)](https://user-images.githubusercontent.com/73301992/207171754-4e4b6472-f292-4400-8a06-7dcae0b6b647.png)
 
 ![Screenshot (241)](https://user-images.githubusercontent.com/73301992/207176242-ddbc0c85-e8ec-4df8-a010-9b6e50ed787e.png)
+![er_diagram](https://user-images.githubusercontent.com/73301992/208917481-f3d716f2-76c7-4b07-9220-c11ca3d10086.jpeg)
+
